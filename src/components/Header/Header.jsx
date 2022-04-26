@@ -1,9 +1,23 @@
 import React, { Component } from "react";
+import {formContext} from '../../context/formContext';
 
-class Header extends Component {
+export class Header extends Component {
   render() {
-    return <div>Header</div>;
+    return (
+      <header>
+        <div>
+        <formContext.Consumer>
+          {({user,logout}) =>
+              user?
+                <>
+                  <p>Hola {user.email}</p>
+                  <button onClick={logout}>Logout</button>
+                </>:""
+          }
+          </formContext.Consumer>
+        </div>
+        </header>
+    )
   }
 }
-
-export default Header;
+export default Header
